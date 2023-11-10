@@ -1,21 +1,11 @@
 const express = require("express");
 const router = express.Router();
+const notesController = require("../controllers/notesController");
 
-//Routes 
-router.route("/").get((req, res) => {
-    res.status(200).json({message: "Here are all the notes"});
-});
-router.route("/:id").get((req, res) => {
-    res.status(200).json({message: `Get note for ${req.params.id}` });
-});
-router.route("/").post((req , res) => {
-  res.status(200).json({ message : 'Create a note'})
-});
-router.route("/:id").put((req, res) => {
-  res.status(200).json({ message: `Update note  ${req.params.id}` });
-});
-router.route("/:id").delete((req ,res) => {
-  res.status(200).json({ message:`Delete note ${req.params.id}` });
-});
+router.route("/").get(notesController.getNotes);
+router.route("/:id").get(notesController.getNote);
+router.route("/").post(notesController.createNote);
+router.route("/:id").put(notesController.updateNote);
+router.route("/:id").delete(notesController.deleteNote);
 
 module.exports = router;
