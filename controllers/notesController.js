@@ -13,8 +13,15 @@ const getNotes = (req, res) => {
   //create or post a notes
   //@route POST/api/notes
   const createNote = (req, res) => {
-    res.status(200).json({ message: "Create a note" });
-  };
+    const { title, content } = req.body;
+    if (!title || !content) {
+      res.status(400);
+      throw new Error("All fields are required!");
+    }
+    console.log(req.body);
+  res.status(200).json({ message: "Create a note" });
+};
+
   
   //update a note
   //@route PUT/api/notes/:id

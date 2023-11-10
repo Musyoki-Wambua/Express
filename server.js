@@ -3,7 +3,10 @@ const app = express();
 require("dotenv").config();
 const PORT = process.env.PORT || 3500;
 
+
+
 //middleware
+app.use(express.json())
 app.use("/api/notes", require("./route/notesRoutes"));
 
 app.listen(PORT, () => {
